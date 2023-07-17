@@ -4,6 +4,6 @@ public class InputValidator {
     }
 
     public static boolean isValidBase(String base) {
-        return base.equals("text") || base.equals("octal") || base.equals("hexadecimal") || base.equals("binary");
+        return base.equals("text") || base.equals("decimal") || base.equals("octal") || base.equals("hexadecimal") || base.equals("binary");
     }
 }

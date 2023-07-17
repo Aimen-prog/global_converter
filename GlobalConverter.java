@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 
 public class GlobalConverter {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class GlobalConverter {
             System.out.println("No input string provided.");
             return;
         } else if (args.length < 2) {
-            base = "text"; // Default base value if only one argument is provided
+            base = "decimal"; // Default base value if only one argument is provided
             inputString = args[0];
         } else {
             base = args[0];

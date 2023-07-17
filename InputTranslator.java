@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class InputTranslator {
 
@@ -67,20 +68,39 @@ public class InputTranslator {
     }
 
 
+    public static String toText(String input) {
+        String[] parts = input.split("\\s+") ;  // split the input by whitespace
+        String baseID = parts[0];
+        String[] inputToTransform = Arrays.copyOfRange(parts, 1, parts.length);
+        String translatedString = "" ;
 
-    public static String toText(String input){
-        String translatedString = "";
-        int[] asciiValues = toAscii(input);
-        for (int value : asciiValues) {
-            System.out.println("....");
+        for (String part : inputToTransform) {
+            int value;
+            if (baseID.equals("hex"))  {
+                value = Integer.parseInt(part, 16); // parse hexadecimal value
+            } else if (baseID.equals("oct"))  {
+                value = Integer.parseInt(part, 8); // parse octal val
+            } else if (baseID.equals("bin"))  {
+                value = Integer.parseInt(part, 2); // parse binary val
+            } else {
+                value = Integer.parseInt(part); // parse decimal val
+            }
+            translatedString+= ((char) value); // Convert Ascii val to character
+
         }
-        return translatedString.trim();
-
+        return translatedString.toString();
     }
+
 
 
     public static String translate(String input, String base) {
         switch (base) {
+            case "decimal" :
+                String decimalValues = Arrays.toString(toAscii(input))
+                        .replace(",", "")
+                        .replace("[", "")
+                        .replace("]", "").trim() ;
+                return decimalValues;
             case "octal":
                 return toOctal(input);
             case "binary":
